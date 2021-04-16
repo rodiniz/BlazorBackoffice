@@ -1,0 +1,42 @@
+﻿@using System.Globalization
+<EditForm Model="@Model" OnValidSubmit="OnValidSubmit">
+    <MudGrid Spacing="1" Justify="Justify.Center">
+        <MudItem >
+            <MudTextField Label="Order Id"
+                          @bind-Value="Model.OrderId" />
+        </MudItem>
+        <MudItem >
+            <MudDatePicker Editable="true" PickerVariant="PickerVariant.Dialog" DateFormat="dd/MM/yyyy" Label="Value Date start" @bind-Date="Model.ValidityStartDate"/>
+        </MudItem>
+        <MudItem >
+            <MudDatePicker Editable="true" PickerVariant="PickerVariant.Dialog" DateFormat="dd/MM/yyyy" Label="Value Date end" @bind-Date="Model.ValidityEndDate"/>
+        </MudItem>
+        <MudItem >
+            <MudDatePicker Editable="true" PickerVariant="PickerVariant.Dialog" DateFormat="dd/MM/yyyy" Label="Reception Date" @bind-Date="Model.ReceptionDate"/>
+        </MudItem>
+    </MudGrid>
+    <MudGrid Spacing="1" Justify="Justify.Center">
+        <MudItem >
+            <MudMenu  MaxHeight="200" Label="Matching Status"  EndIcon="@Icons.Filled.KeyboardArrowDown" Variant="Variant.Outlined" Color="Color.Secondary" Direction="Direction.Bottom" OffsetY="true">
+                <MudMenuItem>
+                    <MudButton OnClick="SelectAllMatchingStatus"> Select All</MudButton>
+                </MudMenuItem>
+                @foreach (var item in StatusOptions)
+                {
+                    <MudMenuItem>
+                        <MudCheckBox @bind-Checked="item.Checked" Label="@item.Label"></MudCheckBox>
+                    </MudMenuItem>
+                }
+                
+            </MudMenu>
+        </MudItem >
+    </MudGrid>
+    <MudGrid Justify="Justify.FlexEnd" Spacing="1">
+        <MudItem Class="pa-4">
+            <MudButton Color="Color.Primary"  ButtonType="ButtonType.Submit" Variant="Variant.Filled">Search</MudButton>
+        </MudItem>
+    </MudGrid>
+    
+
+</EditForm>
+<br/><br/>

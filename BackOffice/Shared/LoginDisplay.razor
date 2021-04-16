@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using System.Security.Claims
+
+@inject NavigationManager _navigation
+@inject SignOutSessionStateManager _signOutManager
+
+<AuthorizeView>
+    <Authorized>
+        @context.User.Claims.FirstOrDefault(c=> c.Type== "email")?.Value
+        <MudIconButton Icon="@Icons.Material.Filled.ExitToApp" Color="Color.Inherit" Edge="Edge.End" OnClick="() => BeginSignOut()"/>
+
+    </Authorized>
+</AuthorizeView>
+
+@code{
+    private async Task BeginSignOut()
+    {
+        await _signOutManager.SetSignOutState();
+        _navigation.NavigateTo("authentication/logout");
+    }
+}

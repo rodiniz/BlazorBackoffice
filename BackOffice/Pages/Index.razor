@@ -1,0 +1,33 @@
+﻿@page "/"
+@attribute [Authorize]
+<TransactionSearchForm OnSearchTransactions="SearchTransactions"></TransactionSearchForm>
+@if (Transactions == null || !Transactions.Any())
+{
+    <Loading></Loading>
+}
+else
+{
+    <MudTable Items="@Transactions" Striped="true" FixedHeader="true" Bordered="true" Breakpoint="Breakpoint.Sm" Height="300px">
+        <HeaderContent>
+            <MudTh>Partner</MudTh>
+            <MudTh>AppUserId</MudTh>
+            <MudTh>OrderId</MudTh>
+            <MudTh>Value Date</MudTh>
+            <MudTh>Reception Date</MudTh>
+            <MudTh>Matching Status</MudTh>
+            <MudTh>Operation Status</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Partner">@context.Partner</MudTd>
+            <MudTd DataLabel="AppUserId">@context.AppUserId</MudTd>
+            <MudTd DataLabel="OrderId">@context.OrderId</MudTd>
+            <MudTd DataLabel="ValueDate">@context.ValueDate</MudTd>
+            <MudTd DataLabel="FileReceptionDate">@context.FileReceptionDate</MudTd>
+            <MudTd DataLabel="MatchStatus">@context.MatchStatus</MudTd>
+            <MudTd DataLabel="OperationStatus">@context.OperationStatus</MudTd>
+        </RowTemplate>
+         <PagerContent>
+                <MudTablePager PageSizeOptions="new int[]{10, 20, 50, 100}" />
+         </PagerContent>
+    </MudTable>
+}
