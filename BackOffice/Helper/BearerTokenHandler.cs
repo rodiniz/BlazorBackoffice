@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 namespace BackOffice.Helper
 {
-    public class ProtectedApiBearerTokenHandler : DelegatingHandler
+    public class BearerTokenHandler : DelegatingHandler
     {
         private readonly IAccessTokenProvider _tokenProvider;
 
-        public ProtectedApiBearerTokenHandler(IAccessTokenProvider tokenProvider)
+        public BearerTokenHandler(IAccessTokenProvider tokenProvider)
         {
             _tokenProvider = tokenProvider;
         }
